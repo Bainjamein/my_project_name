@@ -61,5 +61,17 @@ class Post
         return $this->content;
     }
 
+    public function setDate(\datetime $date): self
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    public function getDate(): \datetime
+    {
+        return $this->date;
+    }
+
+
 }
 

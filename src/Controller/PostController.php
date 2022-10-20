@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,7 +42,7 @@ class PostController extends AbstractController {
         return $response;
     }
 
-    #[Route('/post2')]
+    /*#[Route('/post2')]
     public function getPost42(EntityManagerInterface $em)
     {
         // Sélection générique
@@ -53,7 +54,7 @@ class PostController extends AbstractController {
         $posts = $em->getRepository(Post::class)->findById(42);
         $post = $em->getRepository(Post::class)->findOneById(42);
         // ...  
-    }
+    }*/
 
     #[Route('/posts/new', name:'createPost')]
     public function createPost(EntityManagerInterface $em)
@@ -85,4 +86,21 @@ class PostController extends AbstractController {
         
         return $response;
     }
+
+    #[Route('/posts/edit/{id}', name:'editPost')]
+    public function editPost(EntityManagerInterface $em, int $id)
+    {
+        $post = $em->getRepository(Post::class)->find($id);  
+        $form = $this->createForm(PostType::class, $post);
+
+        $response = $this->render('post/editpost.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+                            ]);
+                
+        
+        
+        return $response;
+    }
+
 }
