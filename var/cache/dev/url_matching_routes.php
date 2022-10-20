@@ -19,7 +19,7 @@ return [
         '/new' => [[['_route' => 'formulaire', '_controller' => 'App\\Controller\\BlogController::formulaire'], null, null, null, false, false, null]],
         '/posts' => [[['_route' => 'posts', '_controller' => 'App\\Controller\\PostController::listPosts'], null, null, null, false, false, null]],
         '/post2' => [[['_route' => 'app_post_getpost42', '_controller' => 'App\\Controller\\PostController::getPost42'], null, null, null, false, false, null]],
-        '/post' => [[['_route' => 'app_post_createpost', '_controller' => 'App\\Controller\\PostController::createPost'], null, null, null, false, false, null]],
+        '/posts/new' => [[['_route' => 'createPost', '_controller' => 'App\\Controller\\PostController::createPost'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -39,6 +39,10 @@ return [
                     .')'
                 .')'
                 .'|/hello/([^/]++)(*:184)'
+                .'|/posts/([^/]++)(?'
+                    .'|/delete(*:217)'
+                    .'|(*:225)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -49,8 +53,10 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        184 => [
-            [['_route' => 'hello1', '_controller' => 'App\\Controller\\BlogController::hello1'], ['id'], null, null, false, true, null],
+        184 => [[['_route' => 'hello1', '_controller' => 'App\\Controller\\BlogController::hello1'], ['id'], null, null, false, true, null]],
+        217 => [[['_route' => 'delete', '_controller' => 'App\\Controller\\PostController::removePost'], ['id'], null, null, false, false, null]],
+        225 => [
+            [['_route' => 'getPost', '_controller' => 'App\\Controller\\PostController::getPost'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

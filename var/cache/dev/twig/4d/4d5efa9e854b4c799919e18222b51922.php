@@ -73,7 +73,9 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
         $context['_seq'] = twig_ensure_traversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 5, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
             // line 6
-            echo "            <li>";
+            echo "            <li>  ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getId", [], "any", false, false, false, 6), "html", null, true);
+            echo "  :  ";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getTitle", [], "any", false, false, false, 6), "html", null, true);
             echo "</li>
         ";
@@ -106,7 +108,7 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
 
     public function getDebugInfo()
     {
-        return array (  85 => 8,  76 => 6,  72 => 5,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  87 => 8,  76 => 6,  72 => 5,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -116,7 +118,7 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
         <h1>Mes posts</h1>
 
         {% for post in posts %}
-            <li>{{ post.getTitle }}</li>
+            <li>  {{ post.getId }}  :  {{ post.getTitle }}</li>
         {% endfor %}
     
     

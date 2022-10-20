@@ -11,14 +11,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class PostController extends AbstractController {
-
-
     
     #[Route('/posts', name:'posts')]
     public function listPosts(EntityManagerInterface $em)
     {
         $posts = $em->getRepository(Post::class)->findAll();
         
+    
+        $response = $this->render('post/posts.html.twig', [
+            'posts' => $posts
+                            ]);
+        
+        return $response;
+    }
+
+    #[Route('/posts/{id}/delete', name:'delete')]
+    public function removePost(EntityManagerInterface $em, int $id )
+    {
+        $posts = $em->getRepository(Post::class)->findAll();
+        $post = $em->getRepository(Post::class)->find($id);  
+
+        $em->remove($post);
+        $em->flush();
     
         $response = $this->render('post/posts.html.twig', [
             'posts' => $posts
@@ -41,7 +55,7 @@ class PostController extends AbstractController {
         // ...  
     }
 
-    #[Route('/post')]
+    #[Route('/posts/new', name:'createPost')]
     public function createPost(EntityManagerInterface $em)
     {
         $post = new Post();
@@ -53,6 +67,19 @@ class PostController extends AbstractController {
         $em->flush();
 
         $response = $this->render('post/createpost.html.twig', [
+            'post' => $post
+                            ]);
+        
+        return $response;
+    }
+
+    #[Route('/posts/{id}', name:'getPost')]
+    public function getPost(EntityManagerInterface $em, int $id )
+    {
+
+        $post = $em->getRepository(Post::class)->find($id);  
+    
+        $response = $this->render('post/post.html.twig', [
             'post' => $post
                             ]);
         
