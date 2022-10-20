@@ -1,0 +1,7 @@
+controllers:
+    resource: ../src/Controller/BlogController.php
+    type: attribute
+
+Forms:
+    resource: ../src/Form/PostType.php
+    type: attribute
