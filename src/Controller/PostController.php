@@ -14,12 +14,17 @@ class PostController extends AbstractController {
 
 
     
-    #[Route('/post1')]
+    #[Route('/posts', name:'posts')]
     public function listPosts(EntityManagerInterface $em)
     {
         $posts = $em->getRepository(Post::class)->findAll();
         
-        return new Response();
+    
+        $response = $this->render('post/posts.html.twig', [
+            'posts' => $posts
+                            ]);
+        
+        return $response;
     }
 
     #[Route('/post2')]
@@ -33,19 +38,24 @@ class PostController extends AbstractController {
         // Sélection "magique" find[One]By<Attribut>($value) :
         $posts = $em->getRepository(Post::class)->findById(42);
         $post = $em->getRepository(Post::class)->findOneById(42);
-        // ...
+        // ...  
     }
 
-    #[Route('/post3')]
+    #[Route('/post')]
     public function createPost(EntityManagerInterface $em)
     {
         $post = new Post();
         $post->setTitle('Un super titre');
         $post->setContent('Un super contenu');
-        $post->setDate(new DateTime());
         // On indique que l'objet est à "persister" = enregistrer en base
         $em->persist($post);
         // Exécution des requêtes (INSERT, UPDATE, DELETE...)
         $em->flush();
+
+        $response = $this->render('post/createpost.html.twig', [
+            'post' => $post
+                            ]);
+        
+        return $response;
     }
 }
