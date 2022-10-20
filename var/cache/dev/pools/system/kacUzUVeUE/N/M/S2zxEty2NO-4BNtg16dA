@@ -1,3 +1,0 @@
-<?php //BlogController
-
-return [PHP_INT_MAX, []];

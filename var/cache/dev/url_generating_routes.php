@@ -20,4 +20,7 @@ return [
     'hello1' => [['id'], ['_controller' => 'App\\Controller\\BlogController::hello1'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/hello']], [], [], []],
     'hello2' => [[], ['_controller' => 'App\\Controller\\BlogController::hello2'], [], [['text', '/hello']], [], [], []],
     'formulaire' => [[], ['_controller' => 'App\\Controller\\BlogController::formulaire'], [], [['text', '/new']], [], [], []],
+    'app_post_listposts' => [[], ['_controller' => 'App\\Controller\\PostController::listPosts'], [], [['text', '/post1']], [], [], []],
+    'app_post_getpost42' => [[], ['_controller' => 'App\\Controller\\PostController::getPost42'], [], [['text', '/post2']], [], [], []],
+    'app_post_createpost' => [[], ['_controller' => 'App\\Controller\\PostController::createPost'], [], [['text', '/post3']], [], [], []],
 ];

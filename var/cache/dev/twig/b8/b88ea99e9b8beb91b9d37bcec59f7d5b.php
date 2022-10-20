@@ -140,6 +140,6 @@ class __TwigTemplate_c6946eb9ec34ddc2bbec140c2b220bd0 extends Template
         </div>
     {{ form_end(form) }}
     
-{% endblock %}", "post/new.html.twig", "/Users/benjamin/CESI/S1/Symfony/my_project_name/templates/post/new.html.twig");
+{% endblock %}", "post/new.html.twig", "/Users/benjamin/CESI/S1/Symfony/test/templates/post/new.html.twig");
     }
 }

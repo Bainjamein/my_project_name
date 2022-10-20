@@ -17,6 +17,9 @@ return [
         '/helloworld' => [[['_route' => 'helloworld', '_controller' => 'App\\Controller\\BlogController::helloworld'], null, null, null, false, false, null]],
         '/hello' => [[['_route' => 'hello2', '_controller' => 'App\\Controller\\BlogController::hello2'], null, null, null, false, false, null]],
         '/new' => [[['_route' => 'formulaire', '_controller' => 'App\\Controller\\BlogController::formulaire'], null, null, null, false, false, null]],
+        '/post1' => [[['_route' => 'app_post_listposts', '_controller' => 'App\\Controller\\PostController::listPosts'], null, null, null, false, false, null]],
+        '/post2' => [[['_route' => 'app_post_getpost42', '_controller' => 'App\\Controller\\PostController::getPost42'], null, null, null, false, false, null]],
+        '/post3' => [[['_route' => 'app_post_createpost', '_controller' => 'App\\Controller\\PostController::createPost'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

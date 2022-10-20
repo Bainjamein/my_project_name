@@ -1,7 +1,7 @@
 controllers:
-    resource: ../src/Controller/BlogController.php
-    type: attribute
+    resource: ../src/Controller/
+    type: annotation
 
-Forms:
-    resource: ../src/Form/PostType.php
-    type: attribute
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
