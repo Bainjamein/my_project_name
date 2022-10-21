@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -31,6 +32,7 @@ class PostController extends AbstractController {
     {
         $posts = $em->getRepository(Post::class)->findAll();
         $post = $em->getRepository(Post::class)->find($id);  
+        
 
         $em->remove($post);
         $em->flush();
@@ -56,22 +58,35 @@ class PostController extends AbstractController {
         // ...  
     }*/
 
-    #[Route('/posts/new', name:'createPost')]
-    public function createPost(EntityManagerInterface $em)
+    #[Route('/posts/new', name: 'post_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $em)
     {
+        // Nouveau Post "vierge"
         $post = new Post();
-        $post->setTitle('Un super titre');
-        $post->setContent('Un super contenu');
-        // On indique que l'objet est à "persister" = enregistrer en base
-        $em->persist($post);
-        // Exécution des requêtes (INSERT, UPDATE, DELETE...)
-        $em->flush();
 
-        $response = $this->render('post/createpost.html.twig', [
-            'post' => $post
-                            ]);
-        
-        return $response;
+        // Création formulaire
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        // Si formulaire soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // ici, $post contient les données soumises
+
+            // On enregistre
+            $em->persist($post);
+            $em->flush();
+
+            // On redirige vers l'affichage du post par exemple
+            return $this->redirectToRoute('posts', ['
+                    id' => $post->getId()]);
+        }
+
+        // Si formulaire non soumis OU formulaire invalide
+        return $this->render('post/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     #[Route('/posts/{id}', name:'getPost')]
@@ -87,19 +102,35 @@ class PostController extends AbstractController {
         return $response;
     }
 
-    #[Route('/posts/edit/{id}', name:'editPost')]
-    public function editPost(EntityManagerInterface $em, int $id)
+    #[Route('/posts/edit/{id}', name:'editPost', methods: ['GET', 'POST'])]
+    public function editPost(Request $request, EntityManagerInterface $em, int $id)
     {
         $post = $em->getRepository(Post::class)->find($id);  
         $form = $this->createForm(PostType::class, $post);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+		
+            // ici, $post contient les données soumises
+                        
+            // On enregistre
+            $em->persist($post);
+            $em->flush();
+                        
+            // On redirige vers l'affichage du post par exemple
+            return $response = $this->render('post/post.html.twig', [
+                'post' => $post
+                                ]);
+            
+        }
+                        
+        // Si formulaire non soumis OU formulaire invalide
         $response = $this->render('post/editpost.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
                             ]);
-                
-        
-        
+
         return $response;
     }
 

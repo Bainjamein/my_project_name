@@ -18,7 +18,7 @@ return [
         '/hello' => [[['_route' => 'hello2', '_controller' => 'App\\Controller\\BlogController::hello2'], null, null, null, false, false, null]],
         '/new' => [[['_route' => 'formulaire', '_controller' => 'App\\Controller\\BlogController::formulaire'], null, null, null, false, false, null]],
         '/posts' => [[['_route' => 'posts', '_controller' => 'App\\Controller\\PostController::listPosts'], null, null, null, false, false, null]],
-        '/posts/new' => [[['_route' => 'createPost', '_controller' => 'App\\Controller\\PostController::createPost'], null, null, null, false, false, null]],
+        '/posts/new' => [[['_route' => 'post_new', '_controller' => 'App\\Controller\\PostController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -59,7 +59,7 @@ return [
         220 => [[['_route' => 'delete', '_controller' => 'App\\Controller\\PostController::removePost'], ['id'], null, null, false, false, null]],
         228 => [[['_route' => 'getPost', '_controller' => 'App\\Controller\\PostController::getPost'], ['id'], null, null, false, true, null]],
         250 => [
-            [['_route' => 'editPost', '_controller' => 'App\\Controller\\PostController::editPost'], ['id'], null, null, false, true, null],
+            [['_route' => 'editPost', '_controller' => 'App\\Controller\\PostController::editPost'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

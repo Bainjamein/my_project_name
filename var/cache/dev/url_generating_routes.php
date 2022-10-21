@@ -22,7 +22,7 @@ return [
     'formulaire' => [[], ['_controller' => 'App\\Controller\\BlogController::formulaire'], [], [['text', '/new']], [], [], []],
     'posts' => [[], ['_controller' => 'App\\Controller\\PostController::listPosts'], [], [['text', '/posts']], [], [], []],
     'delete' => [['id'], ['_controller' => 'App\\Controller\\PostController::removePost'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/posts']], [], [], []],
-    'createPost' => [[], ['_controller' => 'App\\Controller\\PostController::createPost'], [], [['text', '/posts/new']], [], [], []],
+    'post_new' => [[], ['_controller' => 'App\\Controller\\PostController::new'], [], [['text', '/posts/new']], [], [], []],
     'getPost' => [['id'], ['_controller' => 'App\\Controller\\PostController::getPost'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/posts']], [], [], []],
     'editPost' => [['id'], ['_controller' => 'App\\Controller\\PostController::editPost'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/posts/edit']], [], [], []],
 ];
