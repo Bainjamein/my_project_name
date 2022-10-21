@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-#[ORM\Entity()]
+#[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
     #[ORM\Id]
@@ -71,7 +72,6 @@ class Post
     {
         return $this->date;
     }
-
 
 }
 

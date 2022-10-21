@@ -73,17 +73,19 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
         $context['_seq'] = twig_ensure_traversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 5, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
             // line 6
-            echo "            <li>  ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getId", [], "any", false, false, false, 6), "html", null, true);
+            echo "        
+            <li>  ";
+            // line 7
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getId", [], "any", false, false, false, 7), "html", null, true);
             echo "  :  ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getTitle", [], "any", false, false, false, 6), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "getTitle", [], "any", false, false, false, 7), "html", null, true);
             echo "</li>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 8
+        // line 9
         echo "    
     
     
@@ -108,7 +110,7 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
 
     public function getDebugInfo()
     {
-        return array (  87 => 8,  76 => 6,  72 => 5,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  89 => 9,  79 => 7,  76 => 6,  72 => 5,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -118,6 +120,7 @@ class __TwigTemplate_c693ca9036acc83c1fc373dcc51c6125 extends Template
         <h1>Mes posts</h1>
 
         {% for post in posts %}
+        
             <li>  {{ post.getId }}  :  {{ post.getTitle }}</li>
         {% endfor %}
     

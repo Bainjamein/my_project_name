@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <h1>Mes posts</h1>
+
+        <form name="search" method="get"> 
+        <input type="Text" id="title" name="title">
+
+        </br>
+        </br>
+
+        {% for post in posts %}
+        
+            <li>  {{ post.getId }}  :  {{ post.getTitle }}</li>
+
+        {% endfor %}
+    
+    
+    
+{% endblock %}

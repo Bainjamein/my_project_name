@@ -89,7 +89,7 @@ class PostController extends AbstractController {
         ]);
     }
 
-    #[Route('/posts/{id}', name:'getPost')]
+    #[Route('/posts/{id}', name:'getPost', requirements:['id' => '\d+'])]
     public function getPost(EntityManagerInterface $em, int $id )
     {
 
@@ -132,6 +132,34 @@ class PostController extends AbstractController {
                             ]);
 
         return $response;
+    }
+
+
+    #[Route('/posts/search', name:'search')]
+    public function searchPost(Request $request, EntityManagerInterface $em)
+    {
+
+
+        if($request->query->has('title')){
+
+            $title = $request->query->get('title');
+	        // Problème ici : on veut une recherche 'LIKE' sur le titre
+	        $posts = $em->getRepository(Post::class)->findByTitle($title);
+        
+            $response = $this->render('post/search.html.twig', [
+                'posts' => $posts
+                            ]);
+        }else{
+
+            $posts = $em->getRepository(Post::class)->findAll();
+
+            $response = $this->render('post/search.html.twig', [
+                'posts' => $posts
+                            ]);
+        }
+
+        return $response;
+
     }
 
 }

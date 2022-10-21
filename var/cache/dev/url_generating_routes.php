@@ -23,6 +23,7 @@ return [
     'posts' => [[], ['_controller' => 'App\\Controller\\PostController::listPosts'], [], [['text', '/posts']], [], [], []],
     'delete' => [['id'], ['_controller' => 'App\\Controller\\PostController::removePost'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/posts']], [], [], []],
     'post_new' => [[], ['_controller' => 'App\\Controller\\PostController::new'], [], [['text', '/posts/new']], [], [], []],
-    'getPost' => [['id'], ['_controller' => 'App\\Controller\\PostController::getPost'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/posts']], [], [], []],
+    'getPost' => [['id'], ['_controller' => 'App\\Controller\\PostController::getPost'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/posts']], [], [], []],
     'editPost' => [['id'], ['_controller' => 'App\\Controller\\PostController::editPost'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/posts/edit']], [], [], []],
+    'search' => [[], ['_controller' => 'App\\Controller\\PostController::searchPost'], [], [['text', '/posts/search']], [], [], []],
 ];
